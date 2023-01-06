@@ -14,13 +14,6 @@ class TodolistsContainer extends Component {
     this.loadTodolists();
   }
 
-  loadTodolists() {
-    axios.get('/api/version1/todolists').then((res) => {
-      this.setState({ todolists: res.data });
-    });
-    // .catch((error) => console.log(error));
-  }
-
   newTodolist = (e) => {
     if (e.key === 'Enter' && !(e.target.value === '')) {
       axios
@@ -33,7 +26,7 @@ class TodolistsContainer extends Component {
           });
 
           this.setState({
-            todolists: todolists,
+            todolists,
             inputValue: '',
           });
         })
@@ -52,13 +45,13 @@ class TodolistsContainer extends Component {
       })
       .then((res) => {
         const todolistIndex = this.state.todolists.findIndex(
-          (x) => x.id === res.data.id
+          (x) => x.id === res.data.id,
         );
         const todolists = update(this.state.todolists, {
           [todolistIndex]: { $set: res.data },
         });
         this.setState({
-          todlists: todlists,
+          todolists,
         });
       })
       .catch((error) => console.log(error));
@@ -67,47 +60,54 @@ class TodolistsContainer extends Component {
   removeTodolist = (id) => {
     axios
       .delete(`/api/version1/todolists/${id}`)
-      .then((res) => {
+      .then(() => {
         const todolistIndex = this.state.todolists.findIndex(
-          (x) => x.id === id
+          (x) => x.id === id,
         );
         const todolists = update(this.state.todolists, {
           $splice: [[todolistIndex, 1]],
         });
         this.setState({
-          todolists: todolists,
+          todolists,
         });
       })
       .catch((error) => console.log(error));
   };
 
+  loadTodolists() {
+    axios.get('/api/version1/todolists').then((res) => {
+      this.setState({ todolists: res.data });
+    });
+    // .catch((error) => console.log(error));
+  }
+
   render() {
     return (
       <div>
-        <div className='taskContainer'>
+        <div className="taskContainer">
           <input
-            className='newTask'
-            type='text'
-            placeholder='Input a New Task and Press Enter'
-            maxLength='75'
+            className="newTask"
+            type="text"
+            placeholder="Input a New Task and Press Enter"
+            maxLength="75"
             onKeyPress={this.newTodolist}
             value={this.state.inputValue}
             onChange={this.handleChange}
           />
         </div>
-        <div className='wrapItems'>
-          <ul className='listItems'>
+        <div className="wrapItems">
+          <ul className="listItems">
             {this.state.todolists.map((todolist) => (
-              <li className='item' key={todolist.id}>
+              <li className="item" key={todolist.id}>
                 <input
-                  className='itemCheckbox'
-                  type='checkbox'
+                  className="itemCheckbox"
+                  type="checkbox"
                   checked={todolist.done}
                   onChange={(e) => this.modifyTodolist(e, todolist.id)}
                 />
-                <label className='itemDisplay'>{todolist.title}</label>
+                <label className="itemDisplay">{todolist.title}</label>
                 <span
-                  className='removeItemButton'
+                  className="removeItemButton"
                   onClick={(e) => this.removeTodolist(todolist.id)}
                 >
                   x
