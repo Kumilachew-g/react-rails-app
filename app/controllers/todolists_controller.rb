@@ -7,6 +7,7 @@ class TodolistsController < ApplicationController
   def create
     todolist = Todolist.create(todolist_params)
     render json: todolist
+  end
 
   def update
     todolist = Todolist.find(params[:id])
@@ -24,6 +25,5 @@ class TodolistsController < ApplicationController
 
   def todolist_params
     params.require(:todolist).permit(:title, :done)
-  end
   end
 end
