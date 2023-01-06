@@ -50,40 +50,6 @@ li.item {
   padding: 5px 0;
 }
 
-li.item:hover .removeItemButton {
-  opacity: 2;
-  visibility: visible;
-}
-
-input.itemCheckbox:checked:after {
-  color: green;
-  width: 15px;
-  content: '\2713';
-  font-size: 15px;
-  display: block;
-  height: 15px;
-  left: 0.7px;
-  position: absolute;
-  bottom: 1.8px;
-}
-
-input.itemCheckbox:checked + label.itemDisplay {
-  color: #f807a8;
-  text-decoration: line-through;
-}
-
-input.itemCheckbox + label.itemDisplay {
-  color: black;
-}
-
-input[placeholder] {
-  font-size: 1.2em;
-}
-
-.taskContainer {
-  padding: 15px;
-}
-
 .removeItemButton {
   float: right;
   visibility: hidden;
@@ -98,6 +64,40 @@ input[placeholder] {
   opacity: 0;
   margin-right: 7px;
   cursor: pointer;
+}
+
+li.item:hover .removeItemButton {
+  opacity: 2;
+  visibility: visible;
+}
+
+input.itemCheckbox:checked::after {
+  color: green;
+  width: 15px;
+  content: '\2713';
+  font-size: 15px;
+  display: block;
+  height: 15px;
+  left: 0.7px;
+  position: absolute;
+  bottom: 1.8px;
+}
+
+input.itemCheckbox + label.itemDisplay {
+  color: black;
+}
+
+input.itemCheckbox:checked + label.itemDisplay {
+  color: #f807a8;
+  text-decoration: line-through;
+}
+
+input[placeholder] {
+  font-size: 1.2em;
+}
+
+.taskContainer {
+  padding: 15px;
 }
 
 .taskContainer .newTask {
