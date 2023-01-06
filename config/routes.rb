@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   scope '/api/version1' do
-    resources :tdlists
+    resources :todolists
     end
 end
