@@ -7,3 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 Todolist.create(title: "Schedule meetings: IT, Accounts, HR", done: false)
 Todolist.create(title: "Visit children's home: perform duties", done: false)
+Todolist.create(title: "Visit children's home 1: perform duties 1", done: false)
