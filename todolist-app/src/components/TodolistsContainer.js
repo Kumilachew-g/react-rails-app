@@ -45,7 +45,7 @@ class TodolistsContainer extends Component {
       })
       .then((res) => {
         const todolistIndex = this.state.todolists.findIndex(
-          (x) => x.id === res.data.id,
+          (x) => x.id === res.data.id
         );
         const todolists = update(this.state.todolists, {
           [todolistIndex]: { $set: res.data },
@@ -62,7 +62,7 @@ class TodolistsContainer extends Component {
       .delete(`/api/version1/todolists/${id}`)
       .then(() => {
         const todolistIndex = this.state.todolists.findIndex(
-          (x) => x.id === id,
+          (x) => x.id === id
         );
         const todolists = update(this.state.todolists, {
           $splice: [[todolistIndex, 1]],
@@ -84,30 +84,30 @@ class TodolistsContainer extends Component {
   render() {
     return (
       <div>
-        <div className="taskContainer">
+        <div className='taskContainer'>
           <input
-            className="newTask"
-            type="text"
-            placeholder="Input a New Task and Press Enter"
-            maxLength="75"
+            className='newTask'
+            type='text'
+            placeholder='Input a New Task and Press Enter'
+            maxLength='75'
             onKeyPress={this.newTodolist}
             value={this.state.inputValue}
             onChange={this.handleChange}
           />
         </div>
-        <div className="wrapItems">
-          <ul className="listItems">
+        <div className='wrapItems'>
+          <ul className='listItems'>
             {this.state.todolists.map((todolist) => (
-              <li className="item" key={todolist.id}>
+              <li className='item' key={todolist.id}>
                 <input
-                  className="itemCheckbox"
-                  type="checkbox"
+                  className='itemCheckbox'
+                  type='checkbox'
                   checked={todolist.done}
                   onChange={(e) => this.modifyTodolist(e, todolist.id)}
                 />
-                <label className="itemDisplay">{todolist.title}</label>
+                <label className='itemDisplay'>{todolist.title}</label>
                 <span
-                  className="removeItemButton"
+                  className='removeItemButton'
                   onClick={(e) => this.removeTodolist(todolist.id)}
                 >
                   x
